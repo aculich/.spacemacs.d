@@ -58,7 +58,7 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(undo-tree)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -309,7 +309,14 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  )
+
+  ;; [[file:~/.emacs.d/elpa/evil-lisp-state-20160403.1948/evil-lisp-state.el::("C-r"%20.%20undo-tree-redo)]]
+
+  (define-key evil-normal-state-map "\C-r" 'isearch-backward-regexp)
+  (define-key evil-lisp-state-map "C-r" 'isearch-backward-regexp)
+  (define-key evil-lisp-state-major-mode-map "C-r" 'isearch-backward-regexp)
+
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
