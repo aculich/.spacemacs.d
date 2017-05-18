@@ -48,7 +48,8 @@ values."
      docker
      python
      emacs-lisp
-     git
+     (git :variables
+          git-magit-status-fullscreen t)
      github
      ;; ivy
      markdown
