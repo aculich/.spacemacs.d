@@ -328,16 +328,182 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; https://gitter.im/syl20bnr/spacemacs?at=58f29c918bb56c2d11af8338
+  ;; (evil-set-initial-state 'magit-status-mode 'emacs)
+  (with-eval-after-load 'evil-states
+    ;; Make Term buffers start in Emacs state.
+    ;; (setq evil-insert-state-modes (delq 'term-mode evil-insert-state-modes))
+    ;; (add-to-list 'evil-emacs-state-modes 'term-mode)
+    (evil-set-initial-state 'term-mode 'emacs)
+    )
+  (with-eval-after-load 'multi-term
+    (add-to-list 'term-bind-key-alist '("C-c z" . term-stop-subjob))
+    (add-to-list 'term-bind-key-alist '("<escape>" . term-send-esc)))
+
+  ;; (setq evil-escape-excluded-major-modes '(term-mode ansi-term ansi-term-mode))
+  (setq split-height-threshold nil
+        split-width-threshold  0)
+
+                                        ;(global-command-log-mode 1)
+
   ;; [[file:~/.emacs.d/elpa/evil-lisp-state-20160403.1948/evil-lisp-state.el::("C-r"%20.%20undo-tree-redo)]]
-
+  (global-undo-tree-mode -1)
+  (define-key evil-normal-state-map "U" 'redo)
   (define-key evil-normal-state-map "\C-r" 'isearch-backward-regexp)
-  (define-key evil-lisp-state-map "C-r" 'isearch-backward-regexp)
-  (define-key evil-lisp-state-major-mode-map "C-r" 'isearch-backward-regexp)
+  (define-key evil-lisp-state-map "\C-r" 'isearch-backward-regexp)
+  (define-key evil-lisp-state-major-mode-map "\C-r" 'isearch-backward-regexp)
 
-)
+  (define-key evil-normal-state-map "\C-p" 'previous-line)
+  (define-key evil-normal-state-map "\C-n" 'next-line)
 
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
+  (bind-keys
+   ("C-'" . avy-goto-word-1)
+   ("C-;" . avy-goto-char))
+
+  (bind-key "C-<tab>"           'other-window)
+  (bind-key "H-b"               'helm-buffers-list)
+  (bind-key "C-x C-b"           'helm-buffers-list)
+
+  ;; (setq-default mac-command-modifier 'alt)   ;; Command-x or Command-m inserts, respectively: × µ
+  ;; (setq-default mac-command-modifier 'super) ;; Control-Command-f produces a mysterious keycode: <C-s-268632078>
+  ;; (setq-default mac-command-modifier 'hyper) ;; seems to avoid both types of the above problems
+
+  ;; https://www.emacswiki.org/emacs/MetaKeyProblems#toc15
+  ;;
+  ;; For some reason under leopard (Mac OS-X 10.0 and higher),
+  ;; internationalization may be turned on. This will result in insertion of a
+  ;; non-ASCII character in the native EmacsForMacOS when you use the Meta key.
+  ;; For example, you may see a “phi” when you type M-X, instead of the behavior
+  ;; you want (this is discussed in 26.13 Coding Systems for Terminal I/O in
+  ;; version 23). To disable this emacs-unfriendly behavior, enter the line
+                                        ;(set-keyboard-coding-system nil)
+
+  ;;(setq-default mac-command-modifier 'hyper)
+
+
+  (bind-keys ("C-x C-g" . git-gutter:toggle)
+             ("C-x v =" . git-gutter:popup-hunk)
+             ;; ("C-x p"   . git-gutter:previous-hunk)
+             ;; ("C-x n"   . git-gutter:next-hunk)
+             ("H-p"     . git-gutter:previous-hunk)
+             ("H-n"     . git-gutter:next-hunk)
+             ;; ([C-s-268632080]   . git-gutter:previous-hunk) ; C-A-p
+             ;; ([C-s-268632078]   . git-gutter:next-hunk-diff)     ; C-A-n
+             ("C-H-p"   . git-gutter:previous-hunk) ; C-A-p
+             ("C-H-n"   . git-gutter:next-hunk-diff)     ; C-A-n
+             ("C-H-c"   . stage-or-commit)
+             ("C-x v s" . git-gutter:stage-hunk)
+             ("C-x v r" . git-gutter:revert-hunk)
+             ("C-H-r"   . git-gutter:revert-hunk))
+
+  (use-package git-gutter
+    :ensure t
+    :diminish git-gutter-mode
+    :commands (stage-or-commit)
+    :bind (("C-x C-g" . git-gutter:toggle)
+           ("C-x v =" . git-gutter:popup-hunk)
+           ;; ("C-x p"   . git-gutter:previous-hunk)
+           ;; ("C-x n"   . git-gutter:next-hunk)
+           ("A-p"     . git-gutter:previous-hunk)
+           ("A-n"     . git-gutter:next-hunk)
+           ("C-A-p"   . git-gutter:previous-hunk)
+           ("C-A-n"   . git-gutter:next-hunk-diff)
+           ("C-A-c"   . stage-or-commit)
+           ("C-x v s" . git-gutter:stage-hunk)
+           ("C-x v r" . git-gutter:revert-hunk)
+           ("C-A-r"   . git-gutter:revert-hunk))
+    :init (global-git-gutter-mode +1)
+    :config
+    (progn
+      (defun git-gutter:diff-hunk ()
+        "Popup diff of current hunk."
+        (interactive)
+        (git-gutter:awhen (git-gutter:search-here git-gutter:diffinfos)
+          (git-gutter:popup-hunk it)
+          (git-gutter:popup-buffer-window)))
+
+
+      (defun git-gutter:next-hunk-diff (&optional arg)
+        (interactive "p")
+        (git-gutter:next-hunk arg)
+        (recenter nil)
+        (git-gutter:diff-hunk))
+
+
+      (defun stage-or-commit (&optional arg)
+        (interactive "p")
+        (if (ignore-errors (git-gutter:search-here-diffinfo git-gutter:diffinfos))
+            (git-gutter:stage-hunk)
+          (progn
+            (save-excursion
+              (magit-diff-staged)
+              (magit-commit))))
+        (when (functionp 'magit-update-status-on-save)
+          (magit-update-status-on-save)))
+
+      (use-package noflet
+        :ensure t)
+      ;; override y/n question-asking
+      (defadvice git-gutter:stage-hunk (around quick-stage activate)
+        (noflet ((yes-or-no-p (&rest args) t))
+          ad-do-it))
+      ))
+
+  (use-package bind-key
+    :ensure t)
+
+  (defun dired-timesort (filename &optional wildcards)
+    (let ((dired-listing-switches "-lhat"))
+      (dired filename wildcards)))
+
+  (defmacro quick-find (key file &optional path find-args)
+    `(bind-key
+      ,key
+      (cond
+       ((stringp ,find-args)
+        '(lambda (&optional arg)
+           (interactive)
+           (find-dired (expand-file-name ,file ,path) ,find-args)))
+       ((and
+         ;; (not (tramp-tramp-file-p (expand-file-name ,file ,path)))
+         (or (file-directory-p (expand-file-name ,file ,path))
+             (not (file-exists-p (expand-file-name ,file ,path)))))
+        '(lambda (&optional arg)
+           (interactive)
+           (dired-timesort (expand-file-name ,file ,path))))
+       (t
+        '(lambda (&optional arg)
+           (interactive)
+           (find-file (expand-file-name ,file ,path)))))))
+
+    ;;; Files
+  (quick-find "C-h C-`"     "~/")
+  (quick-find "C-h C-t"     "/tmp/")
+  ;; (quick-find "C-h C-e"     "/sudo::/etc/")
+  (quick-find "C-h C-x C-o" "~/org")
+  (quick-find "C-h C-o"     "~/Documents")
+  (quick-find "C-h C-d"     "~/Downloads")
+  (quick-find "C-h C-i"     user-init-file)
+  ;; (quick-find "C-h C-x C-u" custom-file)
+  ;; (quick-find "C-h C-x C-k" user-keys-file)
+  ;; (quick-find "C-h C-x C-c" "Cask" user-emacs-directory)
+  (quick-find "C-h C-x C-e" (format ".cask/%s/elpa/" emacs-version) user-emacs-directory)
+  (quick-find "C-h C-x e"   "emacs" "~/workspace")
+  (quick-find "C-h C-x C-q" "quick-find.el" user-emacs-directory)
+  (quick-find "C-h C-x C-w" "~/workspace")
+  (quick-find "C-h C-x p"   "~/Pictures")
+  (quick-find "C-h C-x C-s" "~/.ssh/config")
+  (quick-find "C-h C-x C-b" "~/.bash_profile")
+  ;; (quick-find "C-h C-x C-b" (crux-find-shell-init-file))
+  (quick-find "C-h C-x C-s" "~/.ssh/config")
+  ;; (quick-find "C-h C-x C-h" "/sudo::/etc/hosts")
+  (quick-find "C-h C-x s" "settings.el" user-emacs-directory)
+
+  )
+
+  ;; Do not write anything past this comment. This is where Emacs will
+  ;; auto-generate custom variable definitions.
+  
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
