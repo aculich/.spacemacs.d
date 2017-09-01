@@ -13,4 +13,5 @@ brew install gnu-tar --with-default-names
 brew install grep --with-default-names
 brew install gnutls
 brew install gawk
+brew install ag
 ```
