@@ -66,7 +66,8 @@ values."
      version-control
      xkcd
      yaml
-     chrome
+     ;; https://github.com/syl20bnr/spacemacs/issues/8789
+     (chrome :variables chrome-exec-path "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
      ;; ess
      autohotkey
      search-engine
