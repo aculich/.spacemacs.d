@@ -54,7 +54,8 @@ values."
      github
      ;; ivy
      markdown
-     org
+     pandoc
+     ;; org
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -66,6 +67,9 @@ values."
      xkcd
      yaml
      chrome
+     ;; ess
+     autohotkey
+     search-engine
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
