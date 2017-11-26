@@ -505,6 +505,28 @@ you should place your code here."
   ;; (quick-find "C-h C-x C-h" "/sudo::/etc/hosts")
   (quick-find "C-h C-x s" "settings.el" user-emacs-directory)
 
+  ;; investigate: https://github.com/rolandwalker/osx-browse
+  (setq browse-url-browser-function 'browse-url-generic
+        engine/browser-function 'browse-url-generic
+        browse-url-generic-program "open")
+
+  ;; https://github.com/mola-T/flymd/blob/master/browser.md#chrome-macos
+  (defun my-flymd-browser-function (url)
+    (let ((process-environment (browse-url-process-environment)))
+      (apply 'start-process
+             (concat "google-chrome " url) nil
+             "/usr/bin/open"
+             (list "google-chrome" "--new-window" "--allow-file-access-from-files" url))))
+  (setq flymd-browser-open-function 'my-flymd-browser-function)
+
+  (defun my-flymd-browser-function (url)
+    (let ((process-environment (browse-url-process-environment)))
+      (apply 'start-process
+             (concat "firefox " url)
+             nil
+             "/usr/bin/open"
+             (list "-a" "firefox" url))))
+  (setq flymd-browser-open-function 'my-flymd-browser-function)
   )
 
   ;; Do not write anything past this comment. This is where Emacs will
