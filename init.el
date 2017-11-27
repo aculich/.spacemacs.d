@@ -397,8 +397,8 @@ you should place your code here."
              ;; ("C-x n"   . git-gutter:next-hunk)
              ("H-p"     . git-gutter:previous-hunk)
              ("H-n"     . git-gutter:next-hunk)
-             ;; ([C-s-268632080]   . git-gutter:previous-hunk) ; C-A-p
-             ;; ([C-s-268632078]   . git-gutter:next-hunk-diff)     ; C-A-n
+             ([C-s-268632080]   . git-gutter:previous-hunk) ; C-A-p
+             ([C-s-268632078]   . git-gutter:next-hunk-diff)     ; C-A-n
              ("C-H-p"   . git-gutter:previous-hunk) ; C-A-p
              ("C-H-n"   . git-gutter:next-hunk-diff)     ; C-A-n
              ("C-H-c"   . stage-or-commit)
@@ -418,6 +418,7 @@ you should place your code here."
            ("A-n"     . git-gutter:next-hunk)
            ("C-A-p"   . git-gutter:previous-hunk)
            ("C-A-n"   . git-gutter:next-hunk-diff)
+           ([C-s-268632067]   . stage-or-commit)
            ("C-A-c"   . stage-or-commit)
            ("C-x v s" . git-gutter:stage-hunk)
            ("C-x v r" . git-gutter:revert-hunk)
