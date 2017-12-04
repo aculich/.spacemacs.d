@@ -534,6 +534,9 @@ you should place your code here."
   (setq flymd-browser-open-function 'my-flymd-browser-function)
 
   (osx-browse-mode 1)
+
+  (require 'magit-gh-pulls)
+  (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
   )
 
   ;; Do not write anything past this comment. This is where Emacs will
