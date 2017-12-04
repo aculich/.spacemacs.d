@@ -463,6 +463,8 @@ you should place your code here."
   (use-package bind-key
     :ensure t)
 
+  (bind-key "C-s-\"" 'menu-bar-open)
+
   (defun dired-timesort (filename &optional wildcards)
     (let ((dired-listing-switches "-lhat"))
       (dired filename wildcards)))
