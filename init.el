@@ -347,6 +347,9 @@ you should place your code here."
     ;; (setq evil-insert-state-modes (delq 'term-mode evil-insert-state-modes))
     ;; (add-to-list 'evil-emacs-state-modes 'term-mode)
     (evil-set-initial-state 'term-mode 'emacs)
+    (evil-set-initial-state 'sx-question-list-mode 'emacs)
+    (evil-set-initial-state 'sx-question-mode 'emacs)
+    (evil-set-initial-state 'sx-inbox-mode 'emacs)
     )
   (with-eval-after-load 'multi-term
     (add-to-list 'term-bind-key-alist '("C-c z" . term-stop-subjob))
