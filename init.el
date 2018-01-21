@@ -545,6 +545,17 @@ you should place your code here."
   (require 'magit-gh-pulls)
   (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
 
+  ;;;;
+  ;; Some useful links for enabling ~/.authinfo.gpg
+  ;;
+  ;; https://github.com/kensanata/ggg
+  ;; https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources
+  ;; https://www.emacswiki.org/emacs/GnusAuthinfo
+  ;; https://developer.gitter.im/docs/rest-api
+  ;;
+  ;; Issue about storing gitter-token securely:
+  ;; https://github.com/xuchunyang/gitter.el/issues/5
+  ;; (setq gitter-token "")
 
   ;; https://emacs.stackexchange.com/a/35953/2138
   ;; How can I retrieve an HTTPS URL on Mac OS X without warnings about an untrusted authority?
