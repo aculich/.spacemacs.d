@@ -552,6 +552,10 @@ you should place your code here."
   ;; https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources
   ;; https://www.emacswiki.org/emacs/GnusAuthinfo
   ;; https://developer.gitter.im/docs/rest-api
+  ;; http://prodissues.com/2016/02/emacs-gpg-for-dummies.html
+  ;; https://github.com/aartamonau/authinfo
+  ;; https://www.gnu.org/software/emacs/manual/html_node/auth/Secret-Service-API.html
+  ;; https://www.gnu.org/software/emacs/manual/html_mono/auth.html
   ;;
   ;; Issue about storing gitter-token securely:
   ;; https://github.com/xuchunyang/gitter.el/issues/5
