@@ -46,7 +46,10 @@ values."
      helm
      auto-completion
      better-defaults
-     command-log
+     (command-log
+      :variables
+      clm/logging-dir "~/.emacs.d/.cache/command-log-"
+      command-log-mode-window-font-size -1)
      csv
      docker
      python
