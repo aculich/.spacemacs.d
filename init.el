@@ -569,6 +569,21 @@ you should place your code here."
   ;; https://emacs.stackexchange.com/a/35953/2138
   ;; How can I retrieve an HTTPS URL on Mac OS X without warnings about an untrusted authority?
   (add-to-list 'gnutls-trustfiles "/private/etc/ssl/cert.pem")
+
+  (use-package kubernetes-evil
+    :config
+    (progn
+      (evil-define-key 'motion kubernetes-mode-map
+        (kbd "k")   #'magit-section-backward
+        (kbd "j")   #'magit-section-forward)
+
+      (evil-define-key 'motion kubernetes-logs-mode-map
+        (kbd "j") #'kubernetes-logs-forward-line
+        (kbd "k") #'kubernetes-logs-previous-line)
+
+      (evil-define-key 'motion kubernetes-log-line-mode-map
+        (kbd "j") #'kubernetes-logs-forward-line
+        (kbd "k") #'kubernetes-logs-previous-line)))
   )
 
   ;; Do not write anything past this comment. This is where Emacs will
