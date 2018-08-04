@@ -570,6 +570,12 @@ you should place your code here."
   ;; How can I retrieve an HTTPS URL on Mac OS X without warnings about an untrusted authority?
   (add-to-list 'gnutls-trustfiles "/private/etc/ssl/cert.pem")
 
+  (use-package kubernetes
+    :config
+    (progn
+      (spacemacs/set-leader-keys
+        "gk"  'kubernetes-overview)))
+
   (use-package kubernetes-evil
     :config
     (progn
