@@ -600,6 +600,12 @@ you should place your code here."
       (evil-define-key 'motion kubernetes-log-line-mode-map
         (kbd "j") #'kubernetes-logs-forward-line
         (kbd "k") #'kubernetes-logs-previous-line)))
+
+  (use-package dired-jump
+    :bind (("C-A-j"           . dired-jump)
+           ("<C-s-268632074>" . dired-jump)
+           ("C-A-k"           . spacemacs/kill-this-buffer)
+           ("<C-s-268632075>" . spacemacs/kill-this-buffer)))
   )
 
   ;; Do not write anything past this comment. This is where Emacs will
