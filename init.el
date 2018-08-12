@@ -368,6 +368,7 @@ you should place your code here."
 
   ;; [[file:~/.emacs.d/elpa/evil-lisp-state-20160403.1948/evil-lisp-state.el::("C-r"%20.%20undo-tree-redo)]]
   (global-undo-tree-mode -1)
+  (define-key evil-normal-state-map ";" 'evil-search-forward)
   (define-key evil-normal-state-map "U" 'redo)
   (define-key evil-normal-state-map "\C-r" 'isearch-backward-regexp)
   (define-key evil-lisp-state-map "\C-r" 'isearch-backward-regexp)
