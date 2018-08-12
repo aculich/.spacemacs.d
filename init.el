@@ -474,6 +474,15 @@ you should place your code here."
   (use-package bind-key
     :ensure t)
 
+  (use-package neotree
+    :config
+    (progn
+      (bind-keys :map neotree-mode-map
+                 (";" . neotree-quick-look))
+      (setq neo-show-hidden-files nil)
+      (add-to-list 'neo-hidden-regexp-list "^\\.git")
+      ))
+
   (bind-key "C-s-\"" 'menu-bar-open)
 
   (defun dired-timesort (filename &optional wildcards)
