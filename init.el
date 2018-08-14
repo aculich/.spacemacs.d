@@ -607,6 +607,12 @@ you should place your code here."
            ("<C-s-268632074>" . dired-jump)
            ("C-A-k"           . spacemacs/kill-this-buffer)
            ("<C-s-268632075>" . spacemacs/kill-this-buffer)))
+
+  (use-package org
+    :config
+    (bind-keys :map org-mode-map
+               ([C-tab] . other-window)))
+
   )
 
   ;; Do not write anything past this comment. This is where Emacs will
