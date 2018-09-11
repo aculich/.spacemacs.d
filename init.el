@@ -610,12 +610,13 @@ you should place your code here."
 
   (use-package magit
     :config
-    (bind-keys :map magit-diff-mode-map
-               ([C-tab] . other-window))
-    (bind-keys :map magit-log-mode-map
-               ([C-tab] . other-window))
-    (bind-keys :map magit-status-mode-map
-               ([C-tab] . other-window)))
+    (progn
+      (bind-keys :map magit-diff-mode-map
+                 ([C-tab] . other-window))
+      (bind-keys :map magit-log-mode-map
+                 ([C-tab] . other-window))
+      (bind-keys :map magit-status-mode-map
+                 ([C-tab] . other-window))))
 
   (use-package org
     :config
