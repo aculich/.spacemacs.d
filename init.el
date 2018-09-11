@@ -606,6 +606,7 @@ you should place your code here."
   (use-package dired-jump
     :bind (("C-A-j"           . dired-jump)
            ("<C-s-268632074>" . dired-jump)
+           ("s-k"             . kill-buffer-and-window)
            ("C-A-k"           . spacemacs/kill-this-buffer)
            ("<C-s-268632075>" . spacemacs/kill-this-buffer)))
 
