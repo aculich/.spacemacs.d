@@ -4,6 +4,7 @@ The --default-names option is optional, turn on this if you really need to use t
 Reference: http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
 
 ```
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 brew tap homebrew/dupes
 brew install coreutils  --with-default-names
 brew install findutils --with-default-names
