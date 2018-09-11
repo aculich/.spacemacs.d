@@ -609,6 +609,11 @@ you should place your code here."
            ("<C-s-268632075>" . spacemacs/kill-this-buffer)))
 
   (use-package magit
+    :init
+    (progn
+      (global-git-commit-mode t)
+      (setq magit-repository-directories '("~/work/")))
+
     :config
     (progn
       (bind-keys :map magit-diff-mode-map
