@@ -608,6 +608,15 @@ you should place your code here."
            ("C-A-k"           . spacemacs/kill-this-buffer)
            ("<C-s-268632075>" . spacemacs/kill-this-buffer)))
 
+  (use-package magit
+    :config
+    (bind-keys :map magit-diff-mode-map
+               ([C-tab] . other-window))
+    (bind-keys :map magit-log-mode-map
+               ([C-tab] . other-window))
+    (bind-keys :map magit-status-mode-map
+               ([C-tab] . other-window)))
+
   (use-package org
     :config
     (bind-keys :map org-mode-map
