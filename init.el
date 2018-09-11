@@ -72,6 +72,8 @@ values."
      ;; spell-checking
      terraform
      syntax-checking
+     ;; (version-control :variables
+     ;;                   version-control-diff-tool 'diff-hl)
      version-control
      xkcd
      yaml
