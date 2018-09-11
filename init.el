@@ -72,9 +72,11 @@ values."
      ;; spell-checking
      terraform
      syntax-checking
+     ;; version-control
+     (version-control :variables
+                       version-control-diff-side 'left)
      ;; (version-control :variables
      ;;                   version-control-diff-tool 'diff-hl)
-     version-control
      xkcd
      yaml
      ;; https://github.com/syl20bnr/spacemacs/issues/8789
