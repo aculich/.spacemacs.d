@@ -634,6 +634,11 @@ you should place your code here."
     (bind-keys :map org-mode-map
                ([C-tab] . other-window)))
 
+  ;; (use-package dired
+  ;;   :config
+  ;;   (bind-keys :map dired-mode-map
+  ;;              ("R" . dired-do-rename)))
+
   )
 
   ;; Do not write anything past this comment. This is where Emacs will
