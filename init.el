@@ -383,6 +383,11 @@ you should place your code here."
   (define-key evil-normal-state-map "\C-p" 'previous-line)
   (define-key evil-normal-state-map "\C-n" 'next-line)
 
+  (use-package sx
+    :config
+    (spacemacs/set-leader-keys
+      "sx" 'sx-search))
+
   (bind-keys
    ("C-'" . avy-goto-word-1)
    ("C-;" . avy-goto-char))
