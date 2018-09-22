@@ -389,6 +389,10 @@ you should place your code here."
       "sx" 'sx-search))
 
   (bind-keys
+   ("C-s-0" . spacemacs/delete-window)
+   ("C-s-1" . spacemacs/toggle-maximize-buffer)
+   ("C-s-2" . split-window-below)
+   ("C-s-3" . split-window-right)
    ("C-'" . avy-goto-word-1)
    ("C-;" . avy-goto-char))
 
