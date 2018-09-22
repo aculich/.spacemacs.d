@@ -389,16 +389,15 @@ you should place your code here."
       "sx" 'sx-search))
 
   (bind-keys
-   ("C-s-0" . spacemacs/delete-window)
-   ("C-s-1" . spacemacs/toggle-maximize-buffer)
-   ("C-s-2" . split-window-below)
-   ("C-s-3" . split-window-right)
-   ("C-'" . avy-goto-word-1)
-   ("C-;" . avy-goto-char))
-
-  (bind-key "C-<tab>"           'other-window)
-  (bind-key "H-b"               'helm-buffers-list)
-  (bind-key "C-x C-b"           'helm-buffers-list)
+   ("C-s-0"   . spacemacs/delete-window)
+   ("C-s-1"   . spacemacs/toggle-maximize-buffer)
+   ("C-s-2"   . split-window-below)
+   ("C-s-3"   . split-window-right)
+   ("C-<tab>" . other-window)
+   ("H-b"     . helm-buffers-list)
+   ("C-x C-b" . helm-buffers-list)
+   ("C-'"     . avy-goto-word-1)
+   ("C-;"     . avy-goto-char))
 
   ;; (setq-default mac-command-modifier 'alt)   ;; Command-x or Command-m inserts, respectively: × µ
   ;; (setq-default mac-command-modifier 'super) ;; Control-Command-f produces a mysterious keycode: <C-s-268632078>
