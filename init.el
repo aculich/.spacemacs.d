@@ -571,8 +571,12 @@ you should place your code here."
 
   (osx-browse-mode 1)
 
-  (require 'magit-gh-pulls)
-  (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+  (use-package magit-gh-pulls
+    :init
+    (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+    :config
+    (magit-define-popup-action 'magit-gh-pulls-popup
+      ?# "Reload" 'magit-gh-pulls-reload))
 
   ;;;;
   ;; Some useful links for enabling ~/.authinfo.gpg
