@@ -44,7 +44,16 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     osx
+     ;; osx
+     (osx :variables
+          ;; osx-command-as       'hyper
+          osx-command-as       'super
+          osx-option-as        'meta
+          osx-control-as       'control
+          osx-function-as      nil
+          osx-right-command-as 'left
+          osx-right-option-as  'left
+          osx-right-control-as 'left)
      helm
      auto-completion
      better-defaults
