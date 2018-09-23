@@ -389,8 +389,10 @@ you should place your code here."
   (define-key evil-normal-state-map ";" 'evil-search-forward)
   (define-key evil-normal-state-map "U" 'undo-tree-redo)
   (define-key evil-normal-state-map "\C-r" 'isearch-backward-regexp)
-  (define-key evil-lisp-state-map "\C-r" 'isearch-backward-regexp)
-  (define-key evil-lisp-state-major-mode-map "\C-r" 'isearch-backward-regexp)
+  ;;;; FIXME: breaks on develop branch for some reason, so temporarily
+  ;;;; commenting out until properly fixed with bind-keys or use-package
+  ;; (define-key evil-lisp-state-map "\C-r" 'isearch-backward-regexp)
+  ;; (define-key evil-lisp-state-major-mode-map "\C-r" 'isearch-backward-regexp)
 
   (define-key evil-normal-state-map "\C-p" 'previous-line)
   (define-key evil-normal-state-map "\C-n" 'next-line)
