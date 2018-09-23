@@ -70,6 +70,7 @@ values."
      github
      ;; ivy
      markdown
+     restructuredtext
      pandoc
      ;; org
      (shell :variables
