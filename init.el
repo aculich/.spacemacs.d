@@ -360,6 +360,8 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo" "~/.netrc"))
+
   ;; vim basics: https://blog.interlinked.org/tutorials/vim_tutorial.html
   ;; https://gitter.im/syl20bnr/spacemacs?at=58f29c918bb56c2d11af8338
   ;; (evil-set-initial-state 'magit-status-mode 'emacs)
