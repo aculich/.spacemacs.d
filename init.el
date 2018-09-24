@@ -363,6 +363,7 @@ you should place your code here."
   (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo" "~/.netrc"))
 
   (use-package paradox
+    :defer t
     :ensure ghub+
     :config
     (progn
