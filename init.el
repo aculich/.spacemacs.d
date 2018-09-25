@@ -654,7 +654,7 @@ you should place your code here."
     :init
     (progn
       (global-git-commit-mode t)
-      (setq magit-repository-directories '("~/work/")))
+      (setq magit-repository-directories '(("~/work/" . 1))))
 
     :config
     (progn
