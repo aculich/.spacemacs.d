@@ -409,6 +409,8 @@ you should place your code here."
 
   (use-package sx
     :config
+    (bind-keys :map sx-question-mode-map
+               (";" . scroll-down-command))
     (spacemacs/set-leader-keys
       "sx" 'sx-search))
 
