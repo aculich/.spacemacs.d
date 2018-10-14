@@ -408,11 +408,14 @@ you should place your code here."
   (define-key evil-normal-state-map "\C-n" 'next-line)
 
   (use-package sx
-    :config
-    (bind-keys :map sx-question-mode-map
-               (";" . scroll-down-command))
+    :init
     (spacemacs/set-leader-keys
       "sx" 'sx-search))
+  (use-package sx-question-mode
+    :defer t
+    :config
+    (bind-keys :map sx-question-mode-map
+               (";" . scroll-down-command)))
 
   (bind-keys
    ("C-s-0"   . spacemacs/delete-window)
