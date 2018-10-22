@@ -680,6 +680,12 @@ you should place your code here."
   ;;   (bind-keys :map dired-mode-map
   ;;              ("R" . dired-do-rename)))
 
+  ;; FIXME: temporary develop branch workaround 2018-10-21
+  ;; https://github.com/syl20bnr/spacemacs/issues/9700
+  ;; Find and replace not working in split frame in branch develop (but fine in master) #9700
+  ;; I suggested the following workaround in #10938:
+  (setq frame-title-format nil)
+
   )
 
   ;; Do not write anything past this comment. This is where Emacs will
