@@ -811,6 +811,15 @@ before packages are loaded."
       (bind-keys :map magit-status-mode-map
                  ([C-tab] . other-window))))
 
+  (use-package magithub
+    :config
+    (progn
+      (magit-set "true" "--global" "magithub.online")
+      (magit-set "true" "--global" "magithub.status.includeStatusHeader")
+      (magit-set "true" "--global" "magithub.status.includePullRequestsSection")
+      (magit-set "true" "--global" "magithub.status.includeIssuesSection")
+      ))
+
   (use-package org
     :config
     (bind-keys :map org-mode-map
