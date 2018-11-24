@@ -764,9 +764,10 @@ before packages are loaded."
   ;; https://github.com/xuchunyang/gitter.el/issues/5
   ;; (setq gitter-token "")
 
+  ;; FIXME: diabled until/if it is needed at some point later
   ;; https://emacs.stackexchange.com/a/35953/2138
   ;; How can I retrieve an HTTPS URL on Mac OS X without warnings about an untrusted authority?
-  (add-to-list 'gnutls-trustfiles "/private/etc/ssl/cert.pem")
+  ;; (add-to-list 'gnutls-trustfiles "/private/etc/ssl/cert.pem")
 
   (use-package kubernetes
     :config
