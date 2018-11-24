@@ -740,12 +740,13 @@ before packages are loaded."
 
   (osx-browse-mode 1)
 
-  (use-package magit-gh-pulls
-    :init
-    (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
-    :config
-    (magit-define-popup-action 'magit-gh-pulls-popup
-      ?# "Reload" 'magit-gh-pulls-reload))
+  ;; FIXME: disabled in favor of magithub
+  ;; (use-package magit-gh-pulls
+  ;;   :init
+  ;;   (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+  ;;   :config
+  ;;   (magit-define-popup-action 'magit-gh-pulls-popup
+  ;;     ?# "Reload" 'magit-gh-pulls-reload))
 
   ;;;;
   ;; Some useful links for enabling ~/.authinfo.gpg
