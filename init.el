@@ -864,6 +864,13 @@ before packages are loaded."
     (require 'poly-R)
     (require 'poly-markdown)
     (poly-markdown+r-mode))
+
+  ;; https://gist.github.com/benmarwick/ee0f400b14af87a57e4a
+  ;;; R modes
+  (add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
+  (add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
+  (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+  (add-to-list 'auto-mode-alist '("\\.rmd" . poly-markdown+r-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
