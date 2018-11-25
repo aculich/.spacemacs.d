@@ -108,7 +108,7 @@ This function should only modify configuration layer settings."
      bm
      (colors :variables colors-enable-nyan-cat-progress-bar t)
      copy-as-format
-     evil-snipe
+     (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      imenu-list
      json
      puppet
