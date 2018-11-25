@@ -104,6 +104,23 @@ This function should only modify configuration layer settings."
      search-engine
      spacemacs-purpose
      sphinx
+     ansible
+     bm
+     (colors :variables colors-enable-nyan-cat-progress-bar t)
+     copy-as-format
+     evil-snipe
+     imenu-list
+     json
+     puppet
+     ranger
+     restclient
+     spotify
+     speed-reading
+     templates
+     transmission
+     treemacs
+     typography
+     windows-scripts
      )
 
    ;; List of additional packages that will be installed without being
