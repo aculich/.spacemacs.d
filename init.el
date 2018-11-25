@@ -599,6 +599,7 @@ before packages are loaded."
              ("C-H-c"   . stage-or-commit)
              ("C-x v s" . git-gutter:stage-hunk)
              ("C-x v r" . git-gutter:revert-hunk)
+             ([C-s-268632082] . git-gutter:revert-hunk)
              ("C-H-r"   . git-gutter:revert-hunk))
 
   (use-package git-gutter
@@ -617,6 +618,7 @@ before packages are loaded."
            ("C-A-c"   . stage-or-commit)
            ("C-x v s" . git-gutter:stage-hunk)
            ("C-x v r" . git-gutter:revert-hunk)
+           ([C-s-268632082] . git-gutter:revert-hunk)
            ("C-A-r"   . git-gutter:revert-hunk))
     :init (global-git-gutter-mode +1)
     :config
