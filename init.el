@@ -623,7 +623,7 @@ before packages are loaded."
       (defun git-gutter:diff-hunk ()
         "Popup diff of current hunk."
         (interactive)
-        (git-gutter:awhen (git-gutter:search-here git-gutter:diffinfos)
+        (git-gutter:awhen (git-gutter:search-here-diffinfo git-gutter:diffinfos)
           (git-gutter:popup-hunk it)
           (git-gutter:popup-buffer-window)))
 
