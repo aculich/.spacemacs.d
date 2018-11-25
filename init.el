@@ -121,6 +121,7 @@ This function should only modify configuration layer settings."
      treemacs
      typography
      windows-scripts
+     ess
      )
 
    ;; List of additional packages that will be installed without being
@@ -130,7 +131,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(osx-browse ssh-config-mode sx gitter visual-fill-column company-terraform noflet kubernetes kubernetes-evil kubernetes-tramp jekyll-modes octopress easy-hugo easy-jekyll easy-kill easy-kill-extras)
+   dotspacemacs-additional-packages '(osx-browse ssh-config-mode sx gitter visual-fill-column company-terraform noflet kubernetes kubernetes-evil kubernetes-tramp jekyll-modes octopress easy-hugo easy-jekyll easy-kill easy-kill-extras polymode poly-R poly-markdown)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -855,6 +856,14 @@ before packages are loaded."
   ;;   (bind-keys :map dired-mode-map
   ;;              ("R" . dired-do-rename)))
 
+  ;; https://stackoverflow.com/questions/16172345/how-can-i-use-emacs-ess-mode-with-r-markdown
+  ;; http://stefanavey.com/lessons/2018/01/04/ess-render
+  (defun rmd-mode ()
+    "ESS Markdown mode for rmd files"
+    (interactive)
+    (require 'poly-R)
+    (require 'poly-markdown)
+    (poly-markdown+r-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
