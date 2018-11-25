@@ -680,14 +680,15 @@ before packages are loaded."
   (use-package bind-key
     :ensure t)
 
-  (use-package neotree
-    :config
-    (progn
-      (bind-keys :map neotree-mode-map
-                 (";" . neotree-quick-look))
-      (setq neo-show-hidden-files nil)
-      (add-to-list 'neo-hidden-regexp-list "^\\.git")
-      ))
+  ;; FIXME: disable neotree when using emacstree
+  ;; (use-package neotree
+  ;;   :config
+  ;;   (progn
+  ;;     (bind-keys :map neotree-mode-map
+  ;;                (";" . neotree-quick-look))
+  ;;     (setq neo-show-hidden-files nil)
+  ;;     (add-to-list 'neo-hidden-regexp-list "^\\.git")
+  ;;     ))
 
   (bind-key "C-s-\"" 'menu-bar-open)
 
