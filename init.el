@@ -89,7 +89,10 @@ This function should only modify configuration layer settings."
      syntax-checking
      ;; version-control
      (version-control :variables
-                      version-control-diff-side 'left)
+      version-control-diff-side 'left
+      version-control-diff-tool 'git-gutter
+      version-control-global-margin t
+      )
      ;; (version-control :variables
      ;;                   version-control-diff-tool 'diff-hl)
      xkcd
