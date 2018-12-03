@@ -69,7 +69,7 @@ This function should only modify configuration layer settings."
      python
      emacs-lisp
      (git :variables
-          git-magit-status-fullscreen nil)
+          git-magit-status-fullscreen t)
      github
      ;; ivy
      markdown
