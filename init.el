@@ -570,6 +570,11 @@ before packages are loaded."
   (define-key evil-normal-state-map "\C-p" 'previous-line)
   (define-key evil-normal-state-map "\C-n" 'next-line)
 
+  (use-package pandoc-mode
+    :init
+    (spacemacs/set-leader-keys
+      "P P" 'spacemacs/run-pandoc))
+
   (use-package sx
     :init
     (spacemacs/set-leader-keys
