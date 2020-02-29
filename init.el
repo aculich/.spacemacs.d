@@ -57,7 +57,9 @@ This function should only modify configuration layer settings."
           osx-right-command-as 'left
           osx-right-option-as  'left
           osx-right-control-as 'left)
-     helm
+			 (helm
+				 :variables
+				 helm-reuse-last-window-split-state t)
      auto-completion
      better-defaults
      (command-log
