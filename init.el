@@ -762,6 +762,8 @@ before packages are loaded."
   ;; (quick-find "C-h C-x C-h" "/sudo::/etc/hosts")
   (quick-find "C-h C-x s" "settings.el" user-emacs-directory)
 
+	(spacemacs||set-helm-key "ag" helm-google-suggest)
+
   ;; investigate: https://github.com/rolandwalker/osx-browse
   (setq browse-url-browser-function 'browse-url-generic
         engine/browser-function 'browse-url-generic
