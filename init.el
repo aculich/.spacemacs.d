@@ -72,7 +72,8 @@ This function should only modify configuration layer settings."
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t)
-     github
+		 (github :variables
+				  gist-ask-for-filename nil)
      ;; ivy
      markdown
      restructuredtext
