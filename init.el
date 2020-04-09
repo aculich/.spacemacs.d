@@ -35,98 +35,98 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
 		'(php
 			 haskell
-     vimscript
-     ruby
-     sql
-     go
-     swift
-     ;; themes-megapack
-     html
-     javascript
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
-     ;; `M-m f e R' (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     ;; osx
-     (osx :variables
-          ;; osx-command-as       'hyper
-          osx-command-as       'super
-          osx-option-as        'meta
-          osx-control-as       'control
-          osx-function-as      nil
-          osx-right-command-as 'left
-          osx-right-option-as  'left
-          osx-right-control-as 'left)
+			 vimscript
+			 ruby
+			 sql
+			 go
+			 swift
+			 ;; themes-megapack
+			 html
+			 javascript
+			 ;; ----------------------------------------------------------------
+			 ;; Example of useful layers you may want to use right away.
+			 ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
+			 ;; `M-m f e R' (Emacs style) to install them.
+			 ;; ----------------------------------------------------------------
+			 ;; osx
+			 (osx :variables
+				 ;; osx-command-as       'hyper
+				 osx-command-as       'super
+				 osx-option-as        'meta
+				 osx-control-as       'control
+				 osx-function-as      nil
+				 osx-right-command-as 'left
+				 osx-right-option-as  'left
+				 osx-right-control-as 'left)
 			 (helm
 				 :variables
 				 helm-reuse-last-window-split-state t)
-     auto-completion
-     better-defaults
-     (command-log
-      :variables
-      clm/logging-dir "~/.emacs.d/.cache/command-log-"
-      command-log-mode-window-font-size -1)
-     csv
-     docker
-     python
-     emacs-lisp
-     (git :variables
-          git-magit-status-fullscreen t)
-		 (github :variables
-		 		  gist-ask-for-filename nil)
-     ;; ivy
-     markdown
-     restructuredtext
-     pandoc
-     multiple-cursors
-     neotree
-     ;; org
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
-     shell-scripts
-     slack
-     systemd
-     ;; spell-checking
-     terraform
-     syntax-checking
-     ;; version-control
-     (version-control :variables
-                      version-control-diff-side 'left
-                      version-control-diff-tool 'git-gutter
-                      version-control-global-margin t
-                      )
-     ;; (version-control :variables
-     ;;                   version-control-diff-tool 'diff-hl)
-     xkcd
-     yaml
-     ;; https://github.com/syl20bnr/spacemacs/issues/8789
-     (chrome :variables chrome-exec-path "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
-     ;; ess
-     autohotkey
-     search-engine
-     spacemacs-purpose
-     sphinx
-     ansible
-     bm
-     (colors :variables colors-enable-nyan-cat-progress-bar t)
-     copy-as-format
-     (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
-     imenu-list
-     json
-     puppet
-     ranger
-     restclient
-     spotify
-     speed-reading
-     templates
-     transmission
-     treemacs
-     typography
-     windows-scripts
-     ess
-     )
+			 auto-completion
+			 better-defaults
+			 (command-log
+				 :variables
+				 clm/logging-dir "~/.emacs.d/.cache/command-log-"
+				 command-log-mode-window-font-size -1)
+			 csv
+			 docker
+			 python
+			 emacs-lisp
+			 (git :variables
+				 git-magit-status-fullscreen t)
+			 (github :variables
+				 gist-ask-for-filename nil)
+			 ;; ivy
+			 markdown
+			 restructuredtext
+			 pandoc
+			 multiple-cursors
+			 neotree
+			 ;; org
+			 (shell :variables
+				 shell-default-height 30
+				 shell-default-position 'bottom)
+			 shell-scripts
+			 slack
+			 systemd
+			 ;; spell-checking
+			 terraform
+			 syntax-checking
+			 ;; version-control
+			 (version-control :variables
+				 version-control-diff-side 'left
+				 version-control-diff-tool 'git-gutter
+				 version-control-global-margin t
+				 )
+			 ;; (version-control :variables
+			 ;;                   version-control-diff-tool 'diff-hl)
+			 xkcd
+			 yaml
+			 ;; https://github.com/syl20bnr/spacemacs/issues/8789
+			 (chrome :variables chrome-exec-path "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+			 ;; ess
+			 autohotkey
+			 search-engine
+			 spacemacs-purpose
+			 sphinx
+			 ansible
+			 bm
+			 (colors :variables colors-enable-nyan-cat-progress-bar t)
+			 copy-as-format
+			 (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
+			 imenu-list
+			 json
+			 puppet
+			 ranger
+			 restclient
+			 spotify
+			 speed-reading
+			 templates
+			 transmission
+			 treemacs
+			 typography
+			 windows-scripts
+			 ess
+			 )
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
