@@ -74,7 +74,7 @@ This function should only modify configuration layer settings."
 			 (git :variables
 				 git-magit-status-fullscreen t)
 			 (github :variables
-				 gist-ask-for-filename nil)
+				 gist-ask-for-filename t)
 			 ;; ivy
 			 markdown
 			 restructuredtext
