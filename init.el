@@ -564,6 +564,9 @@ before packages are loaded."
     (evil-set-initial-state 'sx-question-list-mode 'emacs)
     (evil-set-initial-state 'sx-question-mode 'emacs)
     (evil-set-initial-state 'sx-inbox-mode 'emacs)
+
+		; https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org
+		(setq-default evil-escape-key-sequence "jk")
     )
   (with-eval-after-load 'multi-term
     (add-to-list 'term-bind-key-alist '("C-c z" . term-stop-subjob))
