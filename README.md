@@ -30,3 +30,7 @@ brew install gawk
 brew install ag
 brew install ripgrep
 ```
+
+# References
+
+https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org
