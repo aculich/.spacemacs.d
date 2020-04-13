@@ -72,7 +72,14 @@ This function should only modify configuration layer settings."
 			 python
 			 emacs-lisp
 			 (git :variables
-				 git-magit-status-fullscreen t)
+
+				 ;; magit-display-buffer-function 'magit-display-buffer-traditional
+				 magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1
+				 ;; magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1
+				 ;; magit-display-buffer-function 'magit-display-buffer-fullframe-status-topleft-v1
+				 ;; magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1
+
+				 git-magit-status-fullscreen nil)
 			 (github :variables
 				 gist-ask-for-filename t)
 			 ;; ivy
