@@ -106,7 +106,6 @@ This function should only modify configuration layer settings."
 			 ;; ess
 			 autohotkey
 			 search-engine
-			 spacemacs-purpose
 			 sphinx
 			 ansible
 			 bm
