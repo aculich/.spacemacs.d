@@ -626,9 +626,11 @@ before packages are loaded."
   (bind-keys
    ("C-s-0"   . spacemacs/delete-window)
    ("C-s-1"   . spacemacs/toggle-maximize-buffer)
-   ("C-s-2"   . split-window-below)
+   ("C-s-2"   . spacemacs/window-split-double-columns)
    ("C-s-3"   . spacemacs/split-window-horizontally-and-switch)
    ("C-s-4"   . split-window-right)
+   ("C-s-5"   . split-window-below)
+   ("C-s-6"   . spacemacs/window-split-triple-columns)
    ("C-<tab>" . other-window)
    ("H-b"     . helm-buffers-list)
    ("C-x C-b" . helm-buffers-list)
