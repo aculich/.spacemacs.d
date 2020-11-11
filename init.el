@@ -1,5 +1,5 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
-;; This file is loaded by Spacemacs at startup.
+;; This file is loaaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
 (defun dotspacemacs/layers ()
@@ -28,11 +28,16 @@ This function should only modify configuration layer settings."
 
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers/") ;
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-		'(php
+		'(
+			 custom
+			 ag-colors
+			 ag-dired
+       ;; ag-general
+			 php
 			 haskell
 			 vimscript
 			 ruby
@@ -69,6 +74,7 @@ This function should only modify configuration layer settings."
 				 command-log-mode-window-font-size -1)
 			 csv
 			 docker
+			 (conda :variables conda-anaconda-home  "/Users/me/opt/anaconda3")
 			 python
 			 emacs-lisp
 			 (git :variables
@@ -109,6 +115,24 @@ This function should only modify configuration layer settings."
 			 xkcd
 			 yaml
 			 ;; https://github.com/syl20bnr/spacemacs/issues/8789
+			 ;; https://lifehacker.com/add-custom-keyboard-shortcuts-to-chrome-extensions-for-1595322121
+			 ;; https://github.com/alpha22jp/atomic-chrome
+			 ;; https://melpa.org/#/atomic-chrome
+			 ;; https://github.com/GhostText/GhostText
+			 ;; https://github.com/stsquad/emacs_chrome
+			 ;; https://github.com/syl20bnr/spacemacs/blame/5e037c8890daf34d82722e5927028cf04e86f3b1/layers/+tools/chrome/packages.el#L29
+			 ;; https://github.com/cpaulik?tab=repositories&q=emacs&type=&language=
+			 ;; https://github.com/cpaulik/emacs-material-theme
+			 ;; https://github.com/cpaulik/dotfiles
+			 ;; https://github.com/syl20bnr/spacemacs/wiki/Beginner's-Guide-to-Contributing-a-Pull-Request-to-Spacemacs
+			 ;; https://github.com/syl20bnr/spacemacs/pull/11524
+			 ;; http://iam.travishartwell.net/2015/07/29/how-to-make-a-pr-for-spacemacs/
+			 ;; https://develop.spacemacs.org/CONTRIBUTING.html
+			 ;; https://develop.spacemacs.org/layers/+source-control/github/README.html
+			 ;; https://practicalli.github.io/blog/posts/raising-spacemacs-issues-and-pull-requests/
+			 ;; https://www.youtube.com/watch?v=gwFGSVtFrgQ
+			 ;; https://www.youtube.com/watch?v=tS9MkQwhSDg&list=PLy9I_IfUBzKIC9I3iUcxCyL-i1hlJfYRp&index=11
+			 ;; https://www.youtube.com/watch?v=fFuf3hExF5w
 			 (chrome :variables chrome-exec-path "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 			 ;; ess
 			 autohotkey
@@ -132,7 +156,12 @@ This function should only modify configuration layer settings."
 			 typography
 			 windows-scripts
 			 ess
+			 (spacemacs-layouts :variables
+				 persp-autokill-buffer-on-remove 'kill-weak
+				 spacemacs-layouts-restrict-spc-tab t)
 			 )
+
+
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -141,7 +170,8 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-		dotspacemacs-additional-packages '(osx-browse ssh-config-mode sx gitter visual-fill-column company-terraform noflet kubernetes kubernetes-evil kubernetes-tramp jekyll-modes octopress easy-hugo easy-jekyll easy-kill easy-kill-extras polymode poly-R poly-markdown magithub)
+		dotspacemacs-additional-packages '(osx-browse ssh-config-mode asx sx gitter visual-fill-column company-terraform noflet kubernetes kubernetes-evil kubernetes-tramp jekyll-modes octopress easy-hugo easy-jekyll easy-kill easy-kill-extras polymode poly-R poly-markdown magithub atomic-chrome
+																				(explain-pause-mode :location (recipe :fetcher github :repo "lastquestion/explain-pause-mode")))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -393,7 +423,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
 
    ;; If non-nil the frame is undecorated when Emacs starts up. Combine this
    ;; variable with `dotspacemacs-maximized-at-startup' in OSX to obtain
@@ -466,7 +496,9 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil, start an Emacs server if one is not already running.
    ;; (default nil)
-   dotspacemacs-enable-server nil
+   dotspacemacs-enable-server t
+   ;; https://gist.github.com/aculich/ab2a05596033739b911379a869cadb54
+   ;; Setting up Emacs daemon on OS X
 
    ;; Set the emacs server socket location.
    ;; If nil, uses whatever the Emacs default is, otherwise a directory path
@@ -560,6 +592,9 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo" "~/.netrc"))
+	(setq edit-server-new-frame t)
+
+	(explain-pause-mode 1)
 
   (use-package paradox
     :defer t
@@ -614,6 +649,7 @@ before packages are loaded."
       "P P" 'spacemacs/run-pandoc))
 
   (use-package sx
+		:defer t
     :init
     (spacemacs/set-leader-keys
       "sx" 'sx-search))
@@ -864,7 +900,38 @@ before packages are loaded."
         (kbd "j") #'kubernetes-logs-forward-line
         (kbd "k") #'kubernetes-logs-previous-line)))
 
-  (use-package dired-jump
+	(use-package dired
+		:defer t
+		:commands (dired dired-hide-details-mode)
+		:init
+		(progn
+			;; (autoload 'diff-hl-dired-mode-unless-remote "diff-hl-dired")
+
+			;; (spacemacs-keys-declare-prefix-for-mode 'dired-mode "s" "subdir")
+			;; (spacemacs-keys-set-leader-keys "d" #'dired)
+			;; (spacemacs-keys-set-leader-keys-for-major-mode 'dired-mode
+			;; 	"d"  #'dired-hide-details-mode
+			;; 	"si" #'dired-insert-subdir
+			;; 	"sd" #'dired-kill-subdir
+			;; 	"w"  #'wdired-change-to-wdired-mode)
+
+			;; (add-hook 'dired-mode-hook #'diff-hl-dired-mode-unless-remote)
+			(add-hook 'dired-mode-hook #'dired-hide-details-mode))
+
+		:config
+		(progn
+			(put 'dired-find-alternate-file 'disabled nil)
+
+			(setq-default dired-listing-switches "-alhv")
+			(setq dired-dwim-target t)
+
+
+			;; (evil-define-key 'normal dired-mode-map (kbd "C-;") #'diredp-up-directory-reuse-dir-buffer)
+			;; (evil-define-key 'normal dired-mode-map (kbd "j") #'diredp-next-line)
+			;; (evil-define-key 'normal dired-mode-map (kbd "k") #'diredp-previous-line)
+			))
+
+ (use-package dired-jump
     :bind (("C-A-j"           . dired-jump)
            ("<C-s-268632074>" . dired-jump)
            ("s-k"             . kill-buffer-and-window)
@@ -895,6 +962,38 @@ before packages are loaded."
       (magit-set "true" "--global" "magithub.status.includeIssuesSection")
       ))
 
+	 (use-package sql
+    ;; :bind (("C-A-j"           . dired-jump)
+		;; 				("<C-s-268632074>" . dired-jump)
+		;; 				("s-k"             . kill-buffer-and-window)
+		;; 				("C-A-k"           . spacemacs/kill-this-buffer)
+		;; 				("<C-s-268632075>" . spacemacs/kill-this-buffer))
+
+		:bind ((:map sql-mode-map
+						 (("<C-return>" . spacemacs/sql-send-paragraph)
+							 ("<C-M-return>" . spacemacs/sql-send-paragraph-and-next-focus)
+							 ("C-M-f" . forward-paragraph)
+							 ("C-M-b" . backward-paragraph)
+							 ("C-M-n" . forward-paragraph)
+							 ("C-M-p" . backward-paragraph))))
+
+		 :config
+		 (progn
+			 (defun spacemacs/sql-send-paragraph-and-next-focus ()
+				 "Send the paragraph to SQLi and go to the next paragraph."
+				 (interactive)
+				 (spacemacs/sql-send-paragraph)
+				 (forward-paragraph))
+
+			 (defadvice sql-send-string (before sql-start-process activate)
+				 (unless (sql-buffer-live-p sql-buffer)
+					 (spacemacs/sql-start))))
+
+		;; :config
+		;; (bind-keys :map sql-mode-map
+		;; 	("<C-return>" . spacemacs/sql-send-paragraph))
+		)
+
   (use-package org
     :config
     (bind-keys :map org-mode-map
@@ -920,7 +1019,16 @@ before packages are loaded."
   (add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
   (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
   (add-to-list 'auto-mode-alist '("\\.rmd" . poly-markdown+r-mode))
-  )
+
+	;; (use-package writerooom
+	;; 	:init
+	;; 	(setq
+	;; 		writeroom-fullscreen-effect 'maximized
+	;; 		writeroom-global-effects
+	;; 			 (quote
+	;; 				 (writeroom-set-alpha writeroom-set-menu-bar-lines writeroom-set-tool-bar-lines writeroom-set-vertical-scroll-bars writeroom-set-bottom-divider-width))))
+
+	) ;; defun dotspacemacs/user-config
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -934,12 +1042,13 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-	'(ansi-color-faces-vector
-		 [default default default italic underline success warning error])
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
  '(evil-want-Y-yank-to-eol nil)
-	'(package-selected-packages
-		 (quote
-			 (phpunit phpcbf php-extras php-auto-yasnippets helm-gtags ggtags drupal-mode counsel-gtags company-php ac-php-core xcscope php-mode hlint-refactor hindent helm-hoogle haskell-snippets flycheck-haskell company-ghci haskell-mode company-cabal cmm-mode poly-R poly-noweb poly-markdown ess-R-data-view ess julia-mode yatemplate typo treemacs-projectile treemacs-evil treemacs pfuture transmission spray spotify restclient-helm ranger rainbow-mode rainbow-identifiers puppet-mode powershell ob-restclient ob-http jinja2-mode helm-spotify-plus multi evil-snipe copy-as-format company-restclient restclient know-your-http-well company-ansible color-identifiers-mode bm ansible-doc ansible yasnippet-snippets yapfify yaml-mode xterm-color xkcd ws-butler winum web-mode web-beautify volatile-highlights visual-fill-column vimrc-mode vi-tilde-fringe uuidgen unfill toc-org tagedit systemd symon sx swift-mode string-inflection ssh-config-mode sql-indent spaceline-all-the-icons spaceline powerline smeargle slim-mode slack circe oauth2 websocket shell-pop seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rake rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode password-generator paradox spinner pandoc-mode ox-pandoc overseer osx-trash osx-dictionary osx-browse browse-url-dwim string-utils list-utils org-bullets open-junk-file octopress noflet nameless mwim multi-term move-text mmm-mode minitest markdown-toc magithub ghub+ apiwrap magit-svn magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode skewer-mode live-py-mode link-hint launchctl kubernetes-tramp kubernetes-evil kubernetes json-navigator hierarchy js2-refactor multiple-cursors js2-mode js-doc jekyll-modes polymode insert-shebang indent-guide importmagic epc ctable concurrent deferred impatient-mode htmlize simple-httpd hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose window-purpose imenu-list helm-projectile helm-mode-manager helm-make helm-gitignore request helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gmail-message-mode ham-mode markdown-mode html-to-markdown gitter gitignore-templates gitignore-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache gh-md fuzzy flymd flycheck-pos-tip pos-tip flycheck-bashate flycheck flx-ido flx fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit git-commit ghub treepy graphql with-editor evil-lisp-state evil-lion evil-indent-plus evil-iedit-state iedit evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens smartparens paredit evil-args evil-anzu anzu eval-sexp-fu highlight eshell-z eshell-prompt-extras esh-help engine-mode emojify ht emoji-cheat-sheet-plus emmet-mode elisp-slime-nav editorconfig  easy-kill-extras easy-kill easy-jekyll easy-hugo dumb-jump doom-modeline eldoc-eval shrink-path all-the-icons memoize dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diff-hl dactyl-mode cython-mode csv-mode counsel-projectile projectile counsel swiper ivy pkg-info epl company-web web-completion-data company-terraform terraform-mode hcl-mode company-tern dash-functional tern company-statistics company-shell company-go go-mode company-emoji company-anaconda company command-log-mode column-enforce-mode clean-aindent-mode chruby centered-cursor-mode bundler inf-ruby browse-at-remote auto-yasnippet yasnippet auto-highlight-symbol auto-complete-rst auto-compile packed anaconda-mode pythonic f dash s alert log4e gntp ahk-mode aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core ac-ispell auto-complete popup which-key use-package pcre2el org-plus-contrib hydra font-lock+ evil goto-chg undo-tree dotenv-mode diminish bind-map bind-key async))))
+ '(package-selected-packages
+   (quote
+    (explain-pause-mode conda direx-grep direx base16-theme ibuffer-projectile helpful elisp-refs loop fennel-mode edit-indirect company-tabnine unicode-escape names all-the-icons-ivy-rich ivy-rich asx utop tuareg caml tide typescript-mode ocp-indent ob-elixir mvn meghanada maven-test-mode lsp-java groovy-mode groovy-imports gradle-mode flycheck-ocaml merlin flycheck-mix flycheck-credo dune clojure-snippets cider-eval-sexp-fu cider sesman queue parseedn clojure-mode parseclj a alchemist elixir-mode atomic-chrome phpunit phpcbf php-extras php-auto-yasnippets helm-gtags ggtags drupal-mode counsel-gtags company-php ac-php-core xcscope php-mode hlint-refactor hindent helm-hoogle haskell-snippets flycheck-haskell company-ghci haskell-mode company-cabal cmm-mode poly-R poly-noweb poly-markdown ess-R-data-view ess julia-mode yatemplate typo treemacs-projectile treemacs-evil treemacs pfuture transmission spray spotify restclient-helm ranger rainbow-mode rainbow-identifiers puppet-mode powershell ob-restclient ob-http jinja2-mode helm-spotify-plus multi evil-snipe copy-as-format company-restclient restclient know-your-http-well company-ansible color-identifiers-mode bm ansible-doc ansible yasnippet-snippets yapfify yaml-mode xterm-color xkcd ws-butler winum web-mode web-beautify volatile-highlights visual-fill-column vimrc-mode vi-tilde-fringe uuidgen unfill toc-org tagedit systemd symon sx swift-mode string-inflection ssh-config-mode sql-indent spaceline-all-the-icons spaceline powerline smeargle slim-mode slack circe oauth2 websocket shell-pop seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rake rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode password-generator paradox spinner pandoc-mode ox-pandoc overseer osx-trash osx-dictionary osx-browse browse-url-dwim string-utils list-utils org-bullets open-junk-file octopress noflet nameless mwim multi-term move-text mmm-mode minitest markdown-toc magithub ghub+ apiwrap magit-svn magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode skewer-mode live-py-mode link-hint launchctl kubernetes-tramp kubernetes-evil kubernetes json-navigator hierarchy js2-refactor multiple-cursors js2-mode js-doc jekyll-modes polymode insert-shebang indent-guide importmagic epc ctable concurrent deferred impatient-mode htmlize simple-httpd hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose window-purpose imenu-list helm-projectile helm-mode-manager helm-make helm-gitignore request helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gmail-message-mode ham-mode markdown-mode html-to-markdown gitter gitignore-templates gitignore-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache gh-md fuzzy flymd flycheck-pos-tip pos-tip flycheck-bashate flycheck flx-ido flx fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit git-commit ghub treepy graphql with-editor evil-lisp-state evil-lion evil-indent-plus evil-iedit-state iedit evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens smartparens paredit evil-args evil-anzu anzu eval-sexp-fu highlight eshell-z eshell-prompt-extras esh-help engine-mode emojify ht emoji-cheat-sheet-plus emmet-mode elisp-slime-nav editorconfig easy-kill-extras easy-kill easy-jekyll easy-hugo dumb-jump doom-modeline eldoc-eval shrink-path all-the-icons memoize dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diff-hl dactyl-mode cython-mode csv-mode counsel-projectile projectile counsel swiper ivy pkg-info epl company-web web-completion-data company-terraform terraform-mode hcl-mode company-tern dash-functional tern company-statistics company-shell company-go go-mode company-emoji company-anaconda company command-log-mode column-enforce-mode clean-aindent-mode chruby centered-cursor-mode bundler inf-ruby browse-at-remote auto-yasnippet yasnippet auto-highlight-symbol auto-complete-rst auto-compile packed anaconda-mode pythonic f dash s alert log4e gntp ahk-mode aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core ac-ispell auto-complete popup which-key use-package pcre2el org-plus-contrib hydra font-lock+ evil goto-chg undo-tree dotenv-mode diminish bind-map bind-key async)))
+ '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
